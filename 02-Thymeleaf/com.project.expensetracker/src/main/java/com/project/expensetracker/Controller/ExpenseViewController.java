@@ -17,6 +17,7 @@ public class ExpenseViewController {
       public ExpenseViewController(ExpenseService expenseService){
             this.expenseService = expenseService;
       }
+
       //Show all expense
     @GetMapping("/list")
     public String listExpenses(Model model){
@@ -46,5 +47,13 @@ public class ExpenseViewController {
           return "expenses-form";
 
     }
+    @GetMapping("/dashboard")
+    public String dashboard(Model model) {
+        Double total = expenseService.getTotalExpense();
+        model.addAttribute("totalExpense", total);
+
+        return "dashboard";
+    }
+
 
 }

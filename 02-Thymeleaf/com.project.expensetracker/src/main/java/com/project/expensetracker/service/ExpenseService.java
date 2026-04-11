@@ -9,4 +9,5 @@ public interface ExpenseService {
     List<Expense> getAllExpenses();
     Expense getExpensById(int id);
     void removeExpenseById(int id );
+    Double getTotalExpense();
 }

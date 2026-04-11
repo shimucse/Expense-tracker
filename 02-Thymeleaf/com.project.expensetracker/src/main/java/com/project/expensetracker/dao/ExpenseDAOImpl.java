@@ -44,5 +44,11 @@ public class ExpenseDAOImpl implements ExpenseDAO {
         }
         else throw new RuntimeException();
     }
+    @Override
+    public Double getTotalExpense() {
+        return entityManager.createQuery(
+                "SELECT SUM(e.amount) FROM Expense e", Double.class
+        ).getSingleResult();
+    }
 
 }

@@ -37,4 +37,8 @@ public class ExpenseServiceImpl implements ExpenseService {
     public void removeExpenseById(int id) {
          expenseDAO.removeExpenseById(id);
     }
+    @Override
+    public Double getTotalExpense() {
+        return expenseDAO.getTotalExpense();
+    }
 }
