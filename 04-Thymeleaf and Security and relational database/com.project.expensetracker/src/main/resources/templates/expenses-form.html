@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Form</title>
+</head>
+<body>
+
+<form th:action="@{/expenses/save}" th:object="${expense}" method="post">
+
+    <input type="hidden" th:field="*{id}" />
+    <label>Title:</label>
+    <input type="text" th:field="*{title}" />
+    <br><br>
+
+    <label>Amount:</label>
+    <input type="number" step="0.01" th:field="*{amount}" />
+    <br><br>
+
+    <label>Catagories:</label>
+    <input type="text"  th:field="*{category}" />
+    <br><br>
+
+    <label>Expense Date:</label>
+    <input type="date" th:field="*{expenseDate}" />
+    <br><br>
+
+    <button type="submit">Save</button>
+
+</form>
+
+</body>
+</html>

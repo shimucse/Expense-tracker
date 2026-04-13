@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Tracker Home</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .card-box {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            width: 200px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .card a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .card a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Expense Tracker</h1>
+
+    <div class="card-box">
+
+        <div class="card">
+            <a th:href="@{/expenses/form}">➕ Add Expense</a>
+        </div>
+
+        <div class="card">
+            <a th:href="@{/expenses/list}">📋 View Expenses</a>
+        </div>
+
+        <div class="card">
+            <a th:href="@{/expenses/dashboard}">📊 Dashboard</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
