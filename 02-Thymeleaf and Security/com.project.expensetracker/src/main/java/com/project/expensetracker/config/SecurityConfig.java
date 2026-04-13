@@ -20,8 +20,13 @@ public class SecurityConfig {
                         .password("{noop}1234")
                         .roles("USER")
                         .build();
+                UserDetails admin = User.builder()
+                        .username("admin")
+                        .password("{noop}1234")
+                        .roles("ADMIN")
+                        .build();
 
-                return new InMemoryUserDetailsManager(user);
+                return new InMemoryUserDetailsManager(user,admin);
         }
 
         @Bean
@@ -30,14 +35,22 @@ public class SecurityConfig {
                 http
                         .authorizeHttpRequests(config -> config
                                 .requestMatchers("/", "/showLoginPage", "/css/**", "/js/**").permitAll()
+                                //User+ADMIN
+                                .requestMatchers("/expenses/list").hasAnyRole("USER","ADMIN")
+                                //Only ADMIN
+                                .requestMatchers("/expenses/dashboard").hasRole("ADMIN")
+                                .requestMatchers("/expenses/delete/**").hasRole("ADMIN")
+
                                 .anyRequest().authenticated()
                         )
                         .formLogin(form -> form
-                                .loginPage("/showLoginPage")
+                                .loginPage("/")
                                 .loginProcessingUrl("/authenticateTheUser")
-                                .defaultSuccessUrl("/", true)
+                                .defaultSuccessUrl("/home", true)
                                 .permitAll()
                         )
+                        .exceptionHandling(config->
+                                config.accessDeniedPage("/access-denied"))
                         .logout(logout -> logout.permitAll()
                         );
 
